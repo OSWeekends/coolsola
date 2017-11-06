@@ -29,6 +29,8 @@ coolsola.logger = function(){
 
 // Métodos
 coolsola.msg = function(data){
+        data = new Date().getTime() + " | " + data.trim();
+    
         // Almacenar el dato
         coolsola.resources.messages.push(data)
     
