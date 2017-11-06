@@ -11,3 +11,5 @@ coolsola.msg = function(data){
             console.log(data)
         }
     }
+
+console.log("Coolsola - v.0.2.0: Cargado....");
