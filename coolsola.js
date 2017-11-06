@@ -5,7 +5,13 @@ var coolsola = {};
 // Config
 coolsola.setup = {
         mute: false,
-        HTMLMode: false
+        HTMLMode: false,
+        style: {
+            log: 'background: #FF00FF; color: #FFF; font-size:12px;',
+            warn: 'background: yellow; color: #333; font-size:12px;',
+            error: 'background: #E60000; color: #FFF; font-size:12px;',
+            assert: 'background: #FABADA; color: #FFF; font-size:12px;'
+        }
     };
 
 coolsola.resources = {
@@ -28,7 +34,7 @@ coolsola.logger = function(){
 }
 
 // Métodos
-coolsola.msg = function(data){
+coolsola.msg = function(data, type){
         data = new Date().getTime() + " | " + data.trim();
     
         // Almacenar el dato
@@ -36,7 +42,15 @@ coolsola.msg = function(data){
     
         // Mostrar al usuario
         if(!coolsola.setup.mute){
-            console.log(data)
+            
+             var paleta = ["log", "warn", "error", "assert"];
+             
+             if(type && paleta.indexOf(type) !== -1){
+                 console.log('%c ' + data, coolsola.setup.style[type]);
+             } else {
+                 console.log(data);
+             }
+
         }
         
         // Actualizar logger
@@ -46,7 +60,7 @@ coolsola.msg = function(data){
         
     }
     
-coolsola.msg("Coolsola - v.0.2.0: Cargado....");
+coolsola.msg("Coolsola - v.0.2.0: Cargado....", "warn");
 
   document.addEventListener("DOMContentLoaded", function(event) {
      if(coolsola.setup.HTMLMode){
